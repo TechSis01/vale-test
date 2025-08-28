@@ -16,8 +16,13 @@ jobs:
         uses: errata-ai/vale-action@v2.1.1
         with:
           fail_on_error: true
+          args: .
       - name: Print message
+        if: success()
         run: echo "This vale check is passed"
+      - name: Print fail message
+        if: failure()
+        run: echo "Vale found issues!"
 
   check_links:
     name: runner/markdown-link 
