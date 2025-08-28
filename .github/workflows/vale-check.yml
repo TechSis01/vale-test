@@ -1,9 +1,9 @@
 name: Review files for tone and voice
 on: 
   push:
-    branches: [main]
+    branches: ["main"]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   review_docs:
