@@ -1,32 +1,30 @@
-# The name of your workflow, which will appear on the GitHub Actions page.
-name: Vale Assignment Workflow 
-
-# The workflow will run every time you push code to the 'main' branch.
-on:
+name: Review files for tone and voice
+on: 
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [ main ]
 
-# A workflow is made up of one or more jobs.
 jobs:
-  # The 'assignment-task' is the unique ID for this job.
-  assignment-task:
-    # We'll use the latest Ubuntu environment for this job.
+  review_docs:
+    name: runner / vale
     runs-on: ubuntu-latest
-
-    # A job contains a sequence of steps.
     steps:
-      # Step 1: Checkout the repository. This is a best practice.
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      # Step 2: Print your GitHub username and repository name.
-      # The 'github.actor' and 'github.repository' variables are built-in.
-      - name: Print User and Repo Details
-        run: |
-          echo "GitHub User: ${{ github.actor }}"
-          echo "Repository: ${{ github.repository }}"
-
-      # Step 3: Print the required success message.
-      - name: Print Success Message
-        run: echo "Vale was installed on my machine."
+      - name: Run vale check
+        uses: errata-ai/vale-action@v2.1.1
+        with:
+          fail_on_error: true
+  check_links:
+    name: runner/vale
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - uses: tcort/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
+          config-file: 'mlc_config.json'
+          folder-path: 'docs/markdown_files'
