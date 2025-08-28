@@ -10,4 +10,4 @@ Let us mov forwar
 - Use exceptions
 - Use pyramids
 
-Check out this file and [read more here ](www.sjnf.com)
+Check out this file and [read more here ](https://msmt.gov.cz/eu-and-international-affairs/government-scholarships-developing-countries?lang=2)
