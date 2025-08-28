@@ -14,10 +14,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Run vale check
         uses: errata-ai/vale-action@v2.1.1
-      - name: Print message
-        run: echo "This vale check is passed"
         with:
           fail_on_error: true
+      - name: Print message
+        run: echo "This vale check is passed"
 
   check_links:
     name: runner/markdown-link 
